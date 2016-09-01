@@ -10,6 +10,7 @@ package modelo;
  * @author Castblam-Note1
  */
 public class Usuario {
+    private int id;
     private String nombre;
     private String apellido;
     private String mail;
@@ -17,7 +18,14 @@ public class Usuario {
     private String pass;
     private String fec_nac;
     private Boolean estado_adm;
+    private Boolean estado_cuenta;
     
+    public Boolean getEstado_cuenta(){
+            return estado_cuenta;
+            };
+    public int getId(){
+            return id;
+            };
     public String getNombre(){
             return nombre;
             };
@@ -40,6 +48,13 @@ public class Usuario {
             return estado_adm;
             };
 
+    public void setEstado_cuenta(Boolean estado_cuenta){
+            this.estado_cuenta= estado_cuenta;
+            };
+    public void setId(int id){
+            this.id = id;
+            };
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

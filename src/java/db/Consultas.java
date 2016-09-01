@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
 import modelo.Usuario;
 
@@ -88,6 +89,34 @@ public class Consultas extends Conexion{
         rs.next();
         int cantidad = rs.getInt(1);
         return cantidad;
+        }
+        
+        public LinkedList<Usuario> getUsuarios()
+        {
+         LinkedList<Usuario> listaUsuarios=new LinkedList<Usuario>();
+         try
+            {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("select * from personas" );
+                while (rs.next())
+                    {
+                        Usuario usuario = new Usuario();
+                        usuario.setId(rs.getInt("id_usu"));
+                        usuario.setUsername(rs.getString("usu"));
+                        usuario.setNombre(rs.getString("nombre"));        
+                        usuario.setApellido(rs.getString("apellido"));
+                        usuario.setMail(rs.getString("mail"));
+                        usuario.setEstado_adm(rs.getBoolean("estado_adm"));
+                        usuario.setEstado_cuenta(rs.getBoolean("estado_cuenta"));
+                        listaUsuarios.add(usuario);
+                    }
+                 
+                }
+                catch (Exception e)
+                {
+                   e.printStackTrace();
+                }
+                return listaUsuarios;
         }
     
 

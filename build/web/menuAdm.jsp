@@ -36,7 +36,7 @@
             <p class="nav-text"></p>
               <ul class="right">
 
-                <li><a href="#">Usuarios</a></li>
+                <li><a href="usuarios.jsp">Usuarios</a></li>
                 <li><a href="#">Ejercicios</a></li>                
                 <li><a href="perfil.jsp">Perfil</a></li>
                 <li>

@@ -24,6 +24,10 @@
         <servlet-name>Salir</servlet-name>
         <servlet-class>servlet.Salir</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlUsuarios</servlet-name>
+        <servlet-class>servlet.ControlUsuarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/ValidaLogin</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>Salir</servlet-name>
         <url-pattern>/Salir</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlUsuarios</servlet-name>
+        <url-pattern>/ControlUsuarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
