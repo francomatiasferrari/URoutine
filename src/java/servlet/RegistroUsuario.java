@@ -61,7 +61,7 @@ public class RegistroUsuario extends HttpServlet {
         miSesion.setAttribute("usuarioActual", usu);
         response.sendRedirect("menu.jsp");    
         
-    
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
