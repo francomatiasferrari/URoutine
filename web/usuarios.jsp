@@ -14,6 +14,7 @@
   <meta charset="UTF-8">
   <meta name="gym" content="width=device-width, initial-scale=1.0" />
   <title>URoutine</title>
+  <jsp:include page="ControlMenuAdm" flush="true"/>
   <link rel="stylesheet" href="css/estilos.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsee.css">
@@ -41,8 +42,8 @@
               <ul class="right">
 
                 <li><a href="usuarios.jsp">Usuarios</a></li>
-                <li><a href="#">Ejercicios</a></li>                
-                <li><a href="perfil.jsp">Perfil</a></li>
+                <li><a href="ejercicios.jsp">Ejercicios</a></li>                
+                <li><a href="perfilAdm.jsp">Perfil</a></li>
                 <li>
                     <form action="Salir" method="get" name="salir">
 			<p> <button type=submit> Salir </button></p>
@@ -62,6 +63,24 @@
 
         <div class="margin">
           <div class="box margin-bottom">
+              <label>INFORMACION DE USUARIOS</label>
+            	<%String usu = (String)session.getAttribute("cantUsu");%>
+            	<%String usuAdm = (String)session.getAttribute("cantAdm");%>
+            	<%String usuBan = (String)session.getAttribute("cantUsuBan");%>
+            	<table width="600" border="2" cellspacing="2">
+      				<tbody>
+                        <tr>
+                          <th scope="col">Usuarios</th>
+                          <th scope="col">Administradores</th>
+                          <th scope="col">Usuarios en baja</th>
+                        </tr>
+                        <tr>
+                          <td><%= usu %></td>
+                          <td><%= usuAdm %></td>
+                          <td><%= usuBan %></td>
+                        </tr>
+                     </tbody>
+                   </table>
               <h1>Lista de usuarios</h1>
             <table border="1">
                 <tr>
@@ -73,6 +92,7 @@
                     <td>Admin</td>
                     <td>Cuenta activada</td>
                 </tr>
+                <input  name=id type=hidden value="+i+" />
               <%
                         Consultas c = new Consultas();
                         Usuario u = new Usuario();
@@ -88,9 +108,12 @@
                         if (lista.get(i).getEstado_adm())
                         out.println("<td>Si</td>");
                         else out.println("<td>No</td>");
-                        if (lista.get(i).getEstado_cuenta())
-                        out.println("<td>No</td>");
-                        else out.println("<td>Si</td>");
+                        if (lista.get(i).getEstado_cuenta()){
+                             out.println("<td>No<form action=ControlUsuarios method=post><input  name=id type=hidden value="+i+"> <button type=submit> Activar </button></form></td>");}
+                        else {
+                            out.println("<td>Si<form action=ControlUsuarios method=post><input  name=id type=hidden value="+i+"> <button type=submit> Desactivar </button></form></td>");
+                        
+                        }
                         out.println("</tr>");
                         }
               %>

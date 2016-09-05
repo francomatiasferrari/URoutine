@@ -4,6 +4,11 @@
     Author     : Castblam-Note1
 --%>
 
+
+<%@page language="java" %>
+<%@page import= "db.Consultas"%>
+<%@page import = "modelo.Ejercicio"%> 
+<%@page import = "java.util.LinkedList"%> 
 <html>
 <head>
   <meta charset="UTF-8">
@@ -58,25 +63,6 @@
 
         <div class="margin">
           <div class="box margin-bottom">
-              
-            <label>INFORMACION DE USUARIOS</label>
-            	<%String usu = (String)session.getAttribute("cantUsu");%>
-            	<%String usuAdm = (String)session.getAttribute("cantAdm");%>
-            	<%String usuBan = (String)session.getAttribute("cantUsuBan");%>
-            	<table width="600" border="2" cellspacing="2">
-      				<tbody>
-                        <tr>
-                          <th scope="col">Usuarios</th>
-                          <th scope="col">Administradores</th>
-                          <th scope="col">Usuarios en baja</th>
-                        </tr>
-                        <tr>
-                          <td><%= usu %></td>
-                          <td><%= usuAdm %></td>
-                          <td><%= usuBan %></td>
-                        </tr>
-                     </tbody>
-                   </table>
               <label>INFORMACION DE EJERCICIOS</label>
              	<%String ejer = (String)session.getAttribute("cantEjer");%>
             	<%String ejerPen = (String)session.getAttribute("cantEjerPen");%>
@@ -95,7 +81,47 @@
                         </tr>
                      </tbody>
                    </table>
-                        
+              <h1>Lista de ejercicios</h1>
+            <table border="1">
+                <tr>
+                    <td>Id</td>
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>Fecha aceptacion</td>
+                    <td>Fecha Propuesto</td>
+                    <td>Rechazado</td>
+                    <td>Usuario</td>
+                    <td>Administracion</td>
+                    <td>Grupo Muscular</td>
+                </tr>
+              <%
+                        Consultas c = new Consultas();
+                        Ejercicio e = new Ejercicio();
+                LinkedList<Ejercicio> lista = c.getEjercicios();
+                    for (int i=0;i<lista.size();i++)
+                       {
+                        out.println("<tr>");
+                        out.println("<td>"+lista.get(i).getCod_ejer()+"</td>");
+                        out.println("<td>"+lista.get(i).getNombre_ej()+"</td>");
+                        out.println("<td>"+lista.get(i).getDescripcion()+"</td>");
+                        if (lista.get(i).getFec_aceptacion()==null){
+                             out.println("<td><form action=ControlEjercicios method=post><input  name=id type=hidden value="+i+"> <button type=submit> Aceptar </button></form></td>");}
+                        else out.println("<td>"+lista.get(i).getFec_aceptacion()+"</td>");
+                        if (lista.get(i).getFec_prop()==null){
+                             out.println("<td>Default</td>");}
+                        else out.println("<td>"+lista.get(i).getFec_prop()+"</td>");
+                        if (lista.get(i).getFec_recha()!=null){
+                             out.println("<td>"+lista.get(i).getFec_recha()+"</td>");}
+                        else if (lista.get(i).getFec_recha()==null){
+                                out.println("<td><form action=ControlEjercicios2 method=post><input  name=id type=hidden value="+i+"> <button type=submit> Rechazar </button></form></td>");}
+                             
+                        out.println("<td>"+lista.get(i).getId_usu()+"</td>");
+                        out.println("<td>"+lista.get(i).getId_usuAdmin()+"</td>");
+                        out.println("<td>"+lista.get(i).getCod_grupom()+"</td>");
+                        out.println("</tr>");
+                        }
+              %>
+</table>
           </div>
         </div>
 

@@ -1,10 +1,9 @@
-package servlet;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package servlet;
 
 import db.Consultas;
 import java.io.IOException;
@@ -16,12 +15,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.Usuario;
 
 /**
  *
  * @author Franco
  */
-public class ControlUsuarios extends HttpServlet {
+public class ControlEjercicios2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +37,18 @@ public class ControlUsuarios extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-       
+        
+        HttpSession miSesion=request.getSession(false);
+        Usuario Admin = (Usuario) miSesion.getAttribute("usuarioActual");
+        int idAdmin = Admin.getId();
+        System.out.println(idAdmin);
+        
         String id = request.getParameter("id");
-        int idFinal = Integer.parseInt(id)+1;
+        int idFinal = Integer.parseInt(id)+1; //porque no trae el id directamente sino que trae el valor de i de un for para imprimir la tabla
         System.out.println(id);
         Consultas con = new Consultas();
-        con.CambiarEstadoCuenta(idFinal);
-        response.sendRedirect("usuarios.jsp");
+        con.RechazarEjercicio(idFinal, idAdmin);
+        response.sendRedirect("ejercicios.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,7 +66,7 @@ public class ControlUsuarios extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ControlUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlEjercicios2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,7 +84,7 @@ public class ControlUsuarios extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ControlUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControlEjercicios2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

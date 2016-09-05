@@ -37,8 +37,8 @@
               <ul class="right">
 
                 <li><a href="usuarios.jsp">Usuarios</a></li>
-                <li><a href="#">Ejercicios</a></li>                
-                <li><a href="perfil.jsp">Perfil</a></li>
+                <li><a href="ejercicios.jsp">Ejercicios</a></li>                
+                <li><a href="perfilAdm.jsp">Perfil</a></li>
                 <li>
                     <form action="Salir" method="get" name="salir">
 			<p> <button type=submit> Salir </button></p>

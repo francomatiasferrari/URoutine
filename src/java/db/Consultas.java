@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
+import modelo.Ejercicio;
 import modelo.Usuario;
 
 
@@ -29,7 +30,7 @@ public class Consultas extends Conexion{
         String consulta = "SELECT * FROM personas WHERE usu = '"+usuario+"' and pass='"+pass+"'";
         rs = s.executeQuery(consulta);
         if(rs.next()){
-            
+            usu.setId(rs.getInt(1));
             usu.setUsername(rs.getString(5));
             usu.setNombre(rs.getString(2));
             usu.setPass(rs.getString(6));
@@ -37,6 +38,7 @@ public class Consultas extends Conexion{
             usu.setMail(rs.getString(4));
             usu.setFec_nac(rs.getString(8));
             usu.setEstado_adm(rs.getBoolean(9));
+            usu.setEstado_cuenta(rs.getBoolean(10));
             return usu;
             }
         else {
@@ -118,6 +120,63 @@ public class Consultas extends Conexion{
                 }
                 return listaUsuarios;
         }
+        
+        public LinkedList<Ejercicio> getEjercicios()
+        {
+         LinkedList<Ejercicio> listaEjercicios=new LinkedList<Ejercicio>();
+         try
+            {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery("select * from ejercicios" );
+                while (rs.next())
+                    {
+                        Ejercicio ejercicio = new Ejercicio();
+                        ejercicio.setCod_ejer(rs.getInt("cod_ejer"));
+                        ejercicio.setNombre_ej(rs.getString("nombre_ej"));
+                        ejercicio.setDescripcion(rs.getString("descripcion"));        
+                        ejercicio.setFec_aceptacion(rs.getString("fec_aceptacion"));
+                        ejercicio.setFec_prop(rs.getString("fec_prop"));
+                        ejercicio.setFec_recha(rs.getString("fec_recha"));
+                        ejercicio.setId_usu(rs.getInt("id_usu"));
+                        ejercicio.setId_usuAdmin(rs.getInt("id_usuAdmin"));
+                        ejercicio.setCod_grupom(rs.getInt("cod_grupom"));
+                        listaEjercicios.add(ejercicio);
+                    }
+                 
+                }
+                catch (Exception e)
+                {
+                   e.printStackTrace();
+                }
+                return listaEjercicios;
+        }
     
-
+            public void CambiarEstadoCuenta (int id) throws SQLException {
+                Statement s = con.createStatement();
+                String consulta = "select estado_cuenta from personas where id_usu = "+id+";";
+                ResultSet rs = s.executeQuery(consulta);
+                rs.next();
+                int est = rs.getInt(1);
+                if (est==0)
+                    est=1;
+                else if (est==1)
+                    est=0;
+                Statement s1 = con.createStatement();
+                String consulta1 = "UPDATE personas SET estado_cuenta = "+est+" WHERE id_usu = "+id+";";
+                s1.executeUpdate(consulta1);
+                
+        }
+            
+             public void AceptarEjercicio (int id, int idAdmin) throws SQLException {
+                Statement s1 = con.createStatement();
+                String consulta1 = "UPDATE ejercicios SET fec_aceptacion = CURRENT_DATE, id_usuAdmin = "+idAdmin+" WHERE cod_ejer = "+id+" ;";
+                s1.executeUpdate(consulta1);
+                      
+        }
+             public void RechazarEjercicio (int id, int idAdmin) throws SQLException {
+                Statement s1 = con.createStatement();
+                String consulta1 = "UPDATE ejercicios SET fec_recha = CURRENT_DATE, id_usuAdmin = "+idAdmin+" WHERE cod_ejer = "+id+" ;";
+                s1.executeUpdate(consulta1);
+                      
+        }
 }
