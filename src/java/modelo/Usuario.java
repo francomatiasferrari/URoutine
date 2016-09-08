@@ -36,7 +36,7 @@ public class Usuario {
             return mail;
             };
     public String getUsername(){
-            return pass;
+            return username;
             };
     public String getPass(){
             return pass;

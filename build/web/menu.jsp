@@ -37,7 +37,7 @@
 
                 <li><a href="menu.jsp">Hoy</a></li>
                 <li><a href="rutina.jsp">Rutina</a></li>
-                <li><a href=#>Proponer ejercicio</a></li>
+                <li><a href="cargarejer.jsp">Proponer ejercicio</a></li>
                 <li><a href="perfil.jsp">Perfil</a></li>
                 <li>
                     <form action="Salir" method="get" name="salir">

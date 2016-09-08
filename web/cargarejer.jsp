@@ -1,7 +1,7 @@
 <%-- 
-    Document   : menu.jsp
-    Created on : 05/06/2016, 15:43:36
-    Author     : Carlitos
+    Document   : perfil
+    Created on : 05/06/2016, 16:11:25
+    Author     : Carlos
 --%>
 
 <html>
@@ -35,15 +35,24 @@
             <p class="nav-text"></p>
               <ul class="right">
 
-                <li><a href="menu.jsp">Hoy</a></li>
-                <li><a href="rutina.jsp">Rutina</a></li>
-                <li><a href="cargarejer.jsp">Proponer ejercicio</a></li>
-                <li><a href="perfil.jsp">Perfil</a></li>
-                <li>
-                    <form action="Salir" method="get" name="salir">
-			<p> <button type=submit> Salir </button></p>
-                    </form>
-                </li>
+                <%Boolean adm = (Boolean)session.getAttribute("adm");
+                   
+                if (adm) {
+                out.println("<li><a href=menuAdm.jsp>Hoy</a></li>");
+                out.println("<li><a href=usuarios.jsp>Usuarios</a></li>");
+                out.println("<li><a href=ejercicios.jsp>Ejercicios</a></li>");
+                out.println("<li><a href=cargarejer.jsp>Cargar Ej</a></li>");
+                out.println("<li><a href=perfil.jsp>Perfil</a></li>");
+                out.println("<li><form action=Salir method=get name=salir><p> <button type=submit> Salir </button></p></form></li>");
+                        }
+                    else {
+                    out.println("<li><a href=menu.jsp>Hoy</a></li>");
+                out.println("<li><a href=rutina.jsp>Rutina</a></li>");
+                out.println("<li><a href=cargarejer.jsp>Proponer Ejercicio</a></li>");
+                out.println("<li><a href=perfil.jsp>Perfil</a></li>");
+                out.println("<li><form action=Salir method=get name=salir><p> <button type=submit> Salir </button></p></form></li>");
+                }
+                %>
               </ul>
           </div>
       </nav>
@@ -59,7 +68,7 @@
         <div class="margin">
           <div class="box margin-bottom">
 
-            no soy administrador
+            Formulario para cargar
 
           </div>
         </div>

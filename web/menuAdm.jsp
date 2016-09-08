@@ -35,9 +35,11 @@
           <div class="top-nav s-12 l-10">
             <p class="nav-text"></p>
               <ul class="right">
-
+                
+                <li><a href=menuAdm.jsp>Hoy</a></li>
                 <li><a href="usuarios.jsp">Usuarios</a></li>
-                <li><a href="ejercicios.jsp">Ejercicios</a></li>                
+                <li><a href="ejercicios.jsp">Ejercicios</a></li>  
+                <li><a href="cargarejer.jsp">Cargar Ej</a></li>
                 <li><a href="perfilAdm.jsp">Perfil</a></li>
                 <li>
                     <form action="Salir" method="get" name="salir">
