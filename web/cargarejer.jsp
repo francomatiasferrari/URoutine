@@ -74,7 +74,14 @@
                 <input required name="nombre" placeholder="Nombre" title="Nombre" type="text" />
                </div>
                <div class="s-12 m-8 l-6 padding">
-                <input required name="grupom" placeholder="Grupo Muscular" title="Grupo Muscular" type="text" />
+                <select name="grupom">
+                   <option value="1">Espalda</option> 
+                   <option value="2">Pecho</option> 
+                   <option value="3">Biceps</option>
+                   <option value="4">Triceps</option> 
+                   <option value="5">Piernas</option> 
+                   <option value="6">Hombros</option> 
+                </select>
                </div>
                <div class="s-12 m-12 l-12 padding">
                 <input required name="descripcion" placeholder="Descripcion" title="Descripcion" type="text" />

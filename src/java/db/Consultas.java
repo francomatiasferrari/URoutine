@@ -179,4 +179,29 @@ public class Consultas extends Conexion{
                 s1.executeUpdate(consulta1);
                       
         }
+             
+             public int TraerUltimoIdEjer () throws SQLException {
+                    Statement s1 = con.createStatement();
+                    ResultSet rs = null;
+                    String consulta = "SELECT ejercicios.cod_ejer FROM ejercicios  WHERE ejercicios.cod_ejer = (SELECT MAX(cod_ejer)  FROM ejercicios)";
+                    rs = s1.executeQuery(consulta);
+                    rs.next();
+                    int ultimoIdNumEjer = rs.getInt("cod_ejer");
+                    int ultimoIdEjerAumentado=ultimoIdNumEjer+1;
+
+                return ultimoIdEjerAumentado;
+                 }
+            public boolean RegistrarEjercicio(Ejercicio ejer, int idU) throws SQLException 
+                 {
+                    Statement s = con.createStatement();
+                    ResultSet rs = null;
+                    try{
+                    int ultimoIdEjer = TraerUltimoIdEjer();
+                    String consulta = "INSERT INTO `ejercicios` (`cod_ejer`, `nombre_ej`, `descripcion`, `foto1`, `foto2`, `fec_aceptacion`, `fec_prop`, `fec_recha`, `id_usu`, `id_usuAdmin`, `cod_grupom`) VALUES ("+ultimoIdEjer+",'"+ejer.getNombre_ej()+"','"+ejer.getDescripcion()+"',NULL,NULL,NULL,CURRENT_DATE,NULL,"+idU+",NULL,"+ejer.getCod_grupom()+");";
+                    s.executeUpdate(consulta);
+                    }
+                    catch(SQLException ex){
+                    }
+                    return true;
+                    }
 }
