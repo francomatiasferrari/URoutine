@@ -68,7 +68,33 @@
         <div class="margin">
           <div class="box margin-bottom">
 
-            Formulario para cargar
+           <form name="cargaej" class="customform padding" action="CargarEjercicio" method="post">
+
+               <div class="s-12 m-8 l-6 padding">
+                <input required name="nombre" placeholder="Nombre" title="Nombre" type="text" />
+               </div>
+               <div class="s-12 m-8 l-6 padding">
+                <input required name="grupom" placeholder="Grupo Muscular" title="Grupo Muscular" type="text" />
+               </div>
+               <div class="s-12 m-12 l-12 padding">
+                <input required name="descripcion" placeholder="Descripcion" title="Descripcion" type="text" />
+               </div>
+               <div class="s-12 m-2 l-2 padding">
+                Foto 1
+               </div>
+               <div class="s-12 m-10 l-10 padding">
+                <input required name="foto1" placeholder="Foto 1" title="Foto 1" type="file" />
+               </div>
+               <div class="s-12 m-2 l-2 padding">
+                Foto 2
+               </div>
+               <div class="s-12 m-10 l-10 padding">
+                <input required name="foto2" placeholder="Foto 2" title="Foto 2" type="file" />
+               </div>
+				<div class="line s-12 m-12 l-12 right ">
+                 <button class="submit-form button background-primary border-radius text-white" type="submit">Registrar</button>
+               </div>
+</form>
 
           </div>
         </div>
