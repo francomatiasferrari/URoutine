@@ -5,12 +5,15 @@
  */
 package db;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutionException;
+import javax.servlet.http.Part;
 import modelo.Ejercicio;
 import modelo.Usuario;
 
@@ -204,4 +207,21 @@ public class Consultas extends Conexion{
                     }
                     return true;
                     }
+            public boolean actualizaUsuario (int id, Part foto) throws SQLException, IOException{
+                
+                String consulta = "UPDATE personas SET foto = ? where id = ?";
+                PreparedStatement ps = con.prepareStatement(consulta);                
+                InputStream fileContent = foto.getInputStream();                
+                
+                ps.setBlob(1,fileContent);
+                ps.setInt(2, id);
+                try{                                                                        
+                    ps.executeUpdate();
+                    //System.out.println("Pasamos la consulta");
+                    return true;
+                }
+                catch(SQLException ex){
+                    return false;
+                }                
+             }
 }

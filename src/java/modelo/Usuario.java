@@ -5,6 +5,11 @@
  */
 package modelo;
 
+import db.Consultas;
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.servlet.http.Part;
+
 /**
  *
  * @author Castblam-Note1
@@ -19,6 +24,7 @@ public class Usuario {
     private String fec_nac;
     private Boolean estado_adm;
     private Boolean estado_cuenta;
+    private Part foto;
     
     public Boolean getEstado_cuenta(){
             return estado_cuenta;
@@ -82,5 +88,17 @@ public class Usuario {
     public void setEstado_adm(Boolean estado_adm) {
         this.estado_adm = estado_adm;
     }
-    
+
+    public Part getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Part foto) {
+        this.foto = foto;
+    }
+    public boolean actualiza() throws SQLException, IOException{
+        Consultas con = new Consultas();
+        Boolean b = con.actualizaUsuario(id,foto);
+        return b;
+    }
 }

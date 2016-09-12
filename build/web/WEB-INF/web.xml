@@ -40,6 +40,10 @@
         <servlet-name>CargarEjercicio</servlet-name>
         <servlet-class>servlet.CargarEjercicio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlPerfil</servlet-name>
+        <servlet-class>servlet.ControlPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/ValidaLogin</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>CargarEjercicio</servlet-name>
         <url-pattern>/CargarEjercicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlPerfil</servlet-name>
+        <url-pattern>/ControlPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

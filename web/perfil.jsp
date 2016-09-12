@@ -4,6 +4,7 @@
     Author     : Carlos
 --%>
 
+<%@page import="modelo.Usuario"%>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -35,15 +36,25 @@
             <p class="nav-text"></p>
               <ul class="right">
 
-                <li><a href="menu.jsp">Hoy</a></li>
-                <li><a href="rutina.jsp">Rutina</a></li>
-                <li><a href=#>Proponer ejercicio</a></li>
-                <li><a href="perfil.jsp">Perfil</a></li>
-                <li>
-                    <form action="Salir" method="get" name="salir">
-			<p> <button type=submit> Salir </button></p>
-                    </form>
-                </li>
+                <%Boolean adm = (Boolean)session.getAttribute("adm");
+                   
+                if (adm) {
+                out.println("<li><a href=menuAdm.jsp>Hoy</a></li>");
+                out.println("<li><a href=usuarios.jsp>Usuarios</a></li>");
+                out.println("<li><a href=ejercicios.jsp>Ejercicios</a></li>");
+                out.println("<li><a href=cargarejer.jsp>Cargar Ej</a></li>");
+                out.println("<li><a href=perfil.jsp>Perfil</a></li>");
+                out.println("<li><form action=Salir method=get name=salir><p> <button type=submit> Salir </button></p></form></li>");
+                        }
+                    else {
+                    out.println("<li><a href=menu.jsp>Hoy</a></li>");
+                out.println("<li><a href=rutina.jsp>Rutina</a></li>");
+                out.println("<li><a href=cargarejer.jsp>Proponer Ejercicio</a></li>");
+                out.println("<li><a href=perfil.jsp>Perfil</a></li>");
+                out.println("<li><form action=Salir method=get name=salir><p> <button type=submit> Salir </button></p></form></li>");
+                }
+                %>
+                
               </ul>
           </div>
       </nav>
@@ -59,8 +70,50 @@
         <div class="margin">
           <div class="box margin-bottom">
 
-            datos del perfil
-
+            <% Usuario usuario = (Usuario)session.getAttribute("usuarioActual"); %>
+            Nombre: <%=(usuario.getNombre())%>
+            <br>
+            Apellido: <%=(usuario.getApellido())%>
+            <br>
+            Mail: <%=(usuario.getMail())%>
+            <br>
+            Fecha de nacimiento <%=(usuario.getFec_nac())%>
+            <br>
+            Nombre de usuario: <%=(usuario.getUsername())%>
+            <br>
+            <!-- AGREGAR BOTON PARA EDITAR CONTRASEÑA TAMBIEN -->
+            Contraseña: <%=(usuario.getPass())%>
+            <br>             
+            <form name="guardar_cambios" action="ControlPerfil" method="post" enctype="multipart/form-data">
+                Foto: <% //(usuario.getFoto())%>
+                <input type="file" id="foto" name="foto">
+                <input type="submit" name="enviar" value="Guardar cambios">
+            </form>
+            <div id="vista">
+                <!-- ACA VA LA VISTA EN MINIATURA -->
+            </div>
+            <%
+            //if((Boolean)session.getAttribute("cambios")){
+            //    out.println("<div>SE GUARDO LA FOTO!<div>");
+            //}else{
+            //    out.println("<div>NO SE GUARDO LA FOTO!<div>");
+            //}           
+            %>
+            <script>
+                window.addEventListener('load', inicio, false);
+                function inicio() {
+                    document.getElementById('foto').addEventListener('change', cargar, false);               
+                }
+                function cargar(ev) {
+                    var arch=new FileReader();
+                    arch.addEventListener('load',leer,false);
+                    arch.readAsDataURL(ev.target.files[0]);
+                }
+                function leer(ev) {
+                    document.getElementById('vista').style.backgroundImage="url('" + ev.target.result + "')";
+                }
+            </script>
+            
           </div>
         </div>
 

@@ -1,0 +1,10 @@
+#vista {
+ margin: 5px;
+ width: 250px;
+ height: 150px;
+ border: 5px dashed gray;
+ border-radius: 8px;
+ background: rgb(230,230,230);
+ background-repeat: no-repeat;
+ background-size: 100%;}
+
