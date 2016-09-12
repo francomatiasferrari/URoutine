@@ -7,8 +7,9 @@ package modelo;
 
 import db.Consultas;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
-import javax.servlet.http.Part;
+
 
 /**
  *
@@ -24,7 +25,7 @@ public class Usuario {
     private String fec_nac;
     private Boolean estado_adm;
     private Boolean estado_cuenta;
-    private Part foto;
+    private InputStream foto;
     
     public Boolean getEstado_cuenta(){
             return estado_cuenta;
@@ -89,11 +90,11 @@ public class Usuario {
         this.estado_adm = estado_adm;
     }
 
-    public Part getFoto() {
+    public InputStream getFoto() {
         return foto;
     }
 
-    public void setFoto(Part foto) {
+    public void setFoto(InputStream foto) {
         this.foto = foto;
     }
     public boolean actualiza() throws SQLException, IOException{

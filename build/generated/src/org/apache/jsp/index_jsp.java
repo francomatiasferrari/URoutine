@@ -42,7 +42,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("<html>\n");
-      out.write("<head>\n");
+      out.write("<head>  \n");
       out.write("  <meta charset=\"UTF-8\">\n");
       out.write("  <meta name=\"gym\" content=\"width=device-width, initial-scale=1.0\" />\n");
       out.write("  <title>URoutine</title>\n");
