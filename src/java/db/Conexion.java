@@ -25,9 +25,9 @@ public class Conexion
     public static final String CLASSNAME = "com.mysql.jdbc.Driver";
     public static final String URL = "jdbc:mysql://"+ HOST +":"+PORT+"/"+DATABASE;
     
-     public java.sql.Connection con;
+    public java.sql.Connection con;
      
-       public Conexion() {
+        public Conexion() {
   
         try {
            Class.forName(CLASSNAME);

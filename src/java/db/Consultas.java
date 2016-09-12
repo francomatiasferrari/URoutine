@@ -209,7 +209,7 @@ public class Consultas extends Conexion{
                     }
             public boolean actualizaUsuario (int id, InputStream foto) throws SQLException, IOException{
                 try{                
-                    String consulta = "UPDATE personas SET foto=? where id=?;";
+                    String consulta = "UPDATE personas SET foto=? where id_usu=?;";
                     PreparedStatement ps = con.prepareStatement(consulta);                                
                   
                     ps.setBlob(1,foto);
