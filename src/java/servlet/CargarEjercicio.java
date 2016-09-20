@@ -7,15 +7,19 @@ package servlet;
 
 import db.Consultas;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import modelo.Ejercicio;
 import modelo.Usuario;
 
@@ -23,6 +27,8 @@ import modelo.Usuario;
  *
  * @author Franco
  */
+@WebServlet
+@MultipartConfig
 public class CargarEjercicio extends HttpServlet {
 
     /**
@@ -46,16 +52,18 @@ public class CargarEjercicio extends HttpServlet {
         String nom = request.getParameter("nombre");
         String gm = request.getParameter("grupom");
         String desc = request.getParameter("descripcion");
-        //String f1 = request.getParameter("foto1");
-        //String f2 = request.getParameter("foto1");
+        Part filePart1 = request.getPart("foto1");
+        InputStream foto1 = filePart1.getInputStream();
+        Part filePart2 = request.getPart("foto2");
+        InputStream foto2 = filePart2.getInputStream();
         
         Ejercicio ejer = new Ejercicio();
         ejer.setNombre_ej(nom);
         int gmnum = Integer.parseInt(gm);
         ejer.setCod_grupom(gmnum);
         ejer.setDescripcion(desc);
-        //ejer.setFoto1(f1);
-        //ejer.setFoto2(f2);
+        ejer.setFoto1(foto1);
+        ejer.setFoto2(foto2);
         
         Consultas con = new Consultas();
         con.RegistrarEjercicio(ejer, idUsu);

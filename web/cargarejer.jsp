@@ -68,7 +68,7 @@
         <div class="margin">
           <div class="box margin-bottom">
 
-           <form name="cargaej" class="customform padding" action="CargarEjercicio" method="post">
+           <form name="cargaej" class="customform padding" action="CargarEjercicio" method="post" enctype="multipart/form-data">
 
                <div class="s-12 m-8 l-6 padding">
                 <input required name="nombre" placeholder="Nombre" title="Nombre" type="text" />

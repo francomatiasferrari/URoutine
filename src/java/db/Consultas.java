@@ -196,14 +196,21 @@ public class Consultas extends Conexion{
                  }
             public boolean RegistrarEjercicio(Ejercicio ejer, int idU) throws SQLException 
                  {
-                    Statement s = con.createStatement();
-                    ResultSet rs = null;
+                    String consulta = "INSERT INTO `ejercicios` (`cod_ejer`, `nombre_ej`, `descripcion`, `foto1`, `foto2`, `fec_aceptacion`, `fec_prop`, `fec_recha`, `id_usu`, `id_usuAdmin`, `cod_grupom`) VALUES (?,?,?,?,?,NULL,CURRENT_DATE,NULL,?,NULL,?);";
+                    PreparedStatement ps = con.prepareStatement(consulta);
                     try{
                     int ultimoIdEjer = TraerUltimoIdEjer();
-                    String consulta = "INSERT INTO `ejercicios` (`cod_ejer`, `nombre_ej`, `descripcion`, `foto1`, `foto2`, `fec_aceptacion`, `fec_prop`, `fec_recha`, `id_usu`, `id_usuAdmin`, `cod_grupom`) VALUES ("+ultimoIdEjer+",'"+ejer.getNombre_ej()+"','"+ejer.getDescripcion()+"',NULL,NULL,NULL,CURRENT_DATE,NULL,"+idU+",NULL,"+ejer.getCod_grupom()+");";
-                    s.executeUpdate(consulta);
+                    ps.setInt(1,ultimoIdEjer);
+                    ps.setString(2,ejer.getNombre_ej());
+                    ps.setString(3,ejer.getDescripcion());
+                    ps.setBlob(4,ejer.getFoto1());
+                    ps.setBlob(5,ejer.getFoto2());
+                    ps.setInt(6,idU);
+                    ps.setInt(7,ejer.getCod_grupom());
+                    ps.executeUpdate();
                     }
                     catch(SQLException ex){
+                        System.out.print(ex);
                     }
                     return true;
                     }

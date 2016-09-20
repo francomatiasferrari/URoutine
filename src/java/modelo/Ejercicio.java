@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Franco
@@ -14,8 +16,8 @@ public class Ejercicio {
         private int cod_ejer;
         private String nombre_ej;
         private String descripcion;
-        private String foto1;
-        private String foto2;
+        private InputStream foto1;
+        private InputStream foto2;
         private String fec_aceptacion;
         private String fec_prop;
         private String fec_recha;
@@ -47,19 +49,19 @@ public class Ejercicio {
         this.descripcion = descripcion;
     }
 
-    public String getFoto1() {
+    public InputStream getFoto1() {
         return foto1;
     }
 
-    public void setFoto1(String foto1) {
+    public void setFoto1(InputStream foto1) {
         this.foto1 = foto1;
     }
 
-    public String getFoto2() {
+    public InputStream getFoto2() {
         return foto2;
     }
 
-    public void setFoto2(String foto2) {
+    public void setFoto2(InputStream foto2) {
         this.foto2 = foto2;
     }
 

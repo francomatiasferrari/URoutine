@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/web/index.jsp</file>
-            <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/web/cargarejer.jsp</file>
-            <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/src/java/servlet/ValidacionLogin.java</file>
-            <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/web/menuAdm.jsp</file>
+            <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/src/java/servlet/ControlPerfil.java</file>
+            <file>file:/C:/Users/Franco/Documents/NetBeansProjects/URoutine/src/java/db/Consultas.java</file>
         </group>
     </open-files>
 </project-private>
