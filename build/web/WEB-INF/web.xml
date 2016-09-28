@@ -44,6 +44,10 @@
         <servlet-name>ControlPerfil</servlet-name>
         <servlet-class>servlet.ControlPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcesaFotos</servlet-name>
+        <servlet-class>servlet.ProcesaFotos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/ValidaLogin</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ControlPerfil</servlet-name>
         <url-pattern>/ControlPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcesaFotos</servlet-name>
+        <url-pattern>/ProcesaFotos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

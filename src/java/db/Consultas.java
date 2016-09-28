@@ -25,13 +25,14 @@ import modelo.Usuario;
 public class Consultas extends Conexion{
     
  
-    public Usuario Validacion(String usuario, String pass) throws SQLException 
+   public Usuario Validacion(String usuario, String pass) throws SQLException 
           {
         Statement s = con.createStatement();
         ResultSet rs = null;
         Usuario usu = new Usuario();
         String consulta = "SELECT * FROM personas WHERE usu = '"+usuario+"' and pass='"+pass+"'";
         rs = s.executeQuery(consulta);
+        //Blob imagen = null;
         if(rs.next()){
             usu.setId(rs.getInt(1));
             usu.setUsername(rs.getString(5));
@@ -42,6 +43,8 @@ public class Consultas extends Conexion{
             usu.setFec_nac(rs.getString(8));
             usu.setEstado_adm(rs.getBoolean(9));
             usu.setEstado_cuenta(rs.getBoolean(10));
+            //imagen = rs.getBlob("foto");
+            //usu.setFoto(imagen.getBinaryStream());
             return usu;
             }
         else {
@@ -230,4 +233,21 @@ public class Consultas extends Conexion{
                 }   
                                                                                 
              }
+            public byte[] traerFotoPerfil(Usuario miUsuario) throws SQLException{
+                String consql = "SELECT foto FROM personas WHERE id_usu =?";
+                byte[] foto =  null;
+                try
+                {
+                    PreparedStatement ps = con.prepareStatement(consql);
+                    ps.setInt(1,miUsuario.getId());
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()){
+                        foto = rs.getBytes("foto");
+                    }
+                }
+                catch (SQLException ex){
+                    System.out.println(ex);
+                }
+            return foto;
+            }
 }

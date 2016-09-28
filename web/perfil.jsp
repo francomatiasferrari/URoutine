@@ -85,7 +85,7 @@
             Contraseña: <%=(usuario.getPass())%>
             <br>             
             <form name="guardar_cambios" action="ControlPerfil" method="post" enctype="multipart/form-data">
-                Foto: <% //(usuario.getFoto())%>
+                Foto: <img src="ProcesaFotos"/>
                 <input type="file" id="foto" name="foto">
                 <input type="submit" name="enviar" value="Guardar cambios">
             </form>
@@ -93,11 +93,7 @@
                 <!-- ACA VA LA VISTA EN MINIATURA -->
             </div>
             <%
-            //if((Boolean)session.getAttribute("cambios")){
-            //    out.println("<div>SE GUARDO LA FOTO!<div>");
-            //}else{
-            //    out.println("<div>NO SE GUARDO LA FOTO!<div>");
-            //}           
+            //MENSAJE NO HAY FOTO, NO CARGO, ETC                       
             %>
             <script>
                 window.addEventListener('load', inicio, false);
